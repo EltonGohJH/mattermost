@@ -52,12 +52,6 @@ func (s *MmctlUnitTestSuite) TestListWebhookCmd() {
 
 		s.client.
 			EXPECT().
-			GetAllTeams(context.TODO(), "", 1, DefaultPageSize).
-			Return([]*model.Team{}, &model.Response{}, nil).
-			Times(1)
-
-		s.client.
-			EXPECT().
 			GetIncomingWebhooksForTeam(context.TODO(), teamID, 0, 100000000, "").
 			Return([]*model.IncomingWebhook{&mockIncomingWebhook}, &model.Response{}, nil).
 			Times(1)
@@ -128,12 +122,6 @@ func (s *MmctlUnitTestSuite) TestListWebhookCmd() {
 			EXPECT().
 			GetAllTeams(context.TODO(), "", 0, DefaultPageSize).
 			Return([]*model.Team{&mockTeam}, &model.Response{}, nil).
-			Times(1)
-
-		s.client.
-			EXPECT().
-			GetAllTeams(context.Background(), "", 1, DefaultPageSize).
-			Return([]*model.Team{}, &model.Response{}, nil).
 			Times(1)
 
 		s.client.
